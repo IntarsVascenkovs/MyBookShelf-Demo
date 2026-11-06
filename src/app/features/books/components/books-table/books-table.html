@@ -1,0 +1,51 @@
+<table>
+  <thead>
+  <tr>
+    <th>&nbsp;</th>
+    <th>
+      <button type="button" (click)="sortByToEmit(BOOK_SORT_FIELD.TITLE)">
+        Title
+        {{ getSortingDirectionArrow(BOOK_SORT_FIELD.TITLE) }}
+      </button>
+    </th>
+    <th>
+      <button type="button" (click)="sortByToEmit(BOOK_SORT_FIELD.AUTHOR)">
+        Author {{ getSortingDirectionArrow(BOOK_SORT_FIELD.AUTHOR) }}
+      </button>
+    </th>
+    <th>
+      <button type="button" (click)="sortByToEmit(BOOK_SORT_FIELD.YEAR)">
+        Year {{ getSortingDirectionArrow(BOOK_SORT_FIELD.YEAR) }}
+      </button>
+    </th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (book of books(); track book.id) {
+      <tr>
+        <td class="col-buttons">
+          <button type="button" class="btn btn-secondary" (click)="editBook.emit(book)">Edit</button>
+          <button
+            type="button" class="btn btn-danger" (click)="deleteBook.emit(book)"
+            [attr.aria-label]="'Delete ' + book.title"
+          >
+            Delete
+          </button>
+        </td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author || 'Unknown author' }}</td>
+        <td class="col-year">{{ book.publicationYear ?? '-' }}</td>
+        <td class="col-status">
+          <span class="book-status" [class]="book.status">
+            {{ book.status }}
+          </span>
+        </td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="4">No books found.</td>
+      </tr>
+    }
+  </tbody>
+</table>

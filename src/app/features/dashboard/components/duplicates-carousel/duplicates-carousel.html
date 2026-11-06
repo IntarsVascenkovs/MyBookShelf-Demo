@@ -1,0 +1,13 @@
+<section class="duplicates-section">
+  <header class="section-header">
+    <h2>Duplicate Books</h2>
+    <span class="view-all">View all →</span>
+  </header>
+  <div class="carousel">
+    @for (group of groups(); track group.bookIds[0]) {
+      <mbs-duplicate-book-card [group]="group"/>
+    } @empty {
+      <p>No duplicate books found.</p>
+    }
+  </div>
+</section>

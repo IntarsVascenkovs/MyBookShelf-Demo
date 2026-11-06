@@ -1,0 +1,88 @@
+:host {
+  display: block;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+
+  button {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    color: #475569;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover:not(:disabled) {
+      border-color: #0e8e94;
+      color: #0e8e94;
+      background: #f0fafa;
+    }
+
+    &.active {
+      background: #0e8e94;
+      border-color: #0e8e94;
+      color: white;
+      font-weight: 700;
+
+      &:hover {
+        background: #08777d;
+        color: white;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #0e8e94;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.ellipsis {
+  padding: 0 0.25rem;
+  color: #94a3b8;
+  user-select: none;
+}
+
+@media screen and (max-width: 840px) {
+  :host {
+    min-width: 480px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pagination {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttons-container {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  border-right: 1px solid #e2e5e9;
+  background: #fff;
+}
+
+.side-nav {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px 16px;
+}
+
+a {
+  padding: 11px 14px;
+  border-radius: 8px;
+  color: #444;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+
+  &.active {
+    background: #e9edf3;
+    color: #111;
+    font-weight: 600;
+  }
+}
+
+.spacer {
+  flex: 1;
+}

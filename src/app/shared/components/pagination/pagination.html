@@ -1,0 +1,43 @@
+<div class="pagination">
+  <div class="buttons-container">
+    <button type="button" (click)="emitPage(currentPage() - 1)" [disabled]="currentPage() === 1">
+      Previous
+    </button>
+    <button
+      type="button"
+      [class.active]="currentPage() === 1"
+      [attr.aria-current]="currentPage() === 1 ? 'page' : null"
+      (click)="emitPage(1)">
+      1
+    </button>
+    @if (showLeadingEllipsis()) {
+      <span class="ellipsis">...</span>
+    }
+    @for (page of pages(); track page) {
+      <button
+        type="button"
+        [class.active]="page === currentPage()"
+        [attr.aria-current]="page === currentPage() ? 'page' : null"
+        (click)="emitPage(page)">
+        {{ page }}
+      </button>
+    }
+    @if (showTrailingEllipsis()) {
+      <span class="ellipsis">...</span>
+    }
+    @if (totalPages() > 1) {
+      <button
+        type="button"
+        [class.active]="totalPages() === currentPage()"
+        [attr.aria-current]="totalPages() === currentPage() ? 'page' : null"
+        (click)="emitPage(totalPages())">
+        {{ totalPages() }}
+      </button>
+    }
+    <button type="button" (click)="emitPage(currentPage() + 1)" [disabled]="currentPage() === totalPages()">
+      Next
+    </button>
+  </div>
+  <div class="">Page {{ currentPage() }} of {{ totalPages() }}</div>
+</div>
+

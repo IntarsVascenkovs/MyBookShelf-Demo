@@ -1,0 +1,12 @@
+<mbs-top-bar />
+
+<div class="app-layout">
+  <mbs-side-nav />
+
+  <main class="app-content">
+    <router-outlet />
+    @if (bookDialogService.isOpen()) {
+      <mbs-book-form-dialog />
+    }
+  </main>
+</div>

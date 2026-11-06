@@ -1,0 +1,15 @@
+<article class="book-card">
+  <div class="book-cover">
+    <span class="copy-badge">
+      {{ group().bookIds.length }}
+    </span>
+    <span class="book-cover_icon">📖</span>
+    <span class="book_cover_title">
+      {{ group().title }}
+    </span>
+    <div class="book-info">
+      <h3>{{ group().title }}</h3>
+      <p>{{ group().author || 'Unknown author' }}</p>
+    </div>
+  </div>
+</article>

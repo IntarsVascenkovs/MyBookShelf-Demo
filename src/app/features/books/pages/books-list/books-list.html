@@ -1,0 +1,57 @@
+<section class="books-page">
+  <header class="page-header">
+    <div>
+      <h1>My Books</h1>
+      <p class="book-count">{{ filteredBooks().length }} books</p>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="bookDialogService.open()">+ Add book</button>
+    <button type="button" class="btn btn-secondary" (click)="requestReset()">Reset demo data</button>
+  </header>
+
+  <div class="books-panel">
+    <div class="books-filters">
+      <input type="search" placeholder="Search by title or author..." [value]="searchTerm()"
+             (input)="onSearch($any($event.target).value)" />
+
+      <select [value]="selectedStatus()" (change)="onStatusChange($any($event.target).value)">
+        <option [value]="ALL_STATUSES">All statuses</option>
+        <option [value]="BOOK_STATUS.OWNED">Owned</option>
+        <option [value]="BOOK_STATUS.WISHLIST">Wishlist</option>
+        <option [value]="BOOK_STATUS.LENT_OUT">Lent out</option>
+      </select>
+    </div>
+
+    <mbs-books-table
+      [books]="paginatedBooks()"
+      [sortField]="sortField()"
+      [sortDirection]="sortDirection()"
+      (sortRequested)="sortBy($event)"
+      (editBook)="onEditBook($event)"
+      (deleteBook)="requestDelete($event)"
+    />
+    <mbs-pagination
+      [currentPage]="validCurrentPage()"
+      [totalPages]="totalPages()"
+      (pageRequested)="changePage($event)"
+    />
+
+    @if (bookToDelete(); as book) {
+      <mbs-confirm-dialog
+        title="Delete book"
+        [message]="'Are you sure you want to delete “' + book.title + '”? This action cannot be undone.'"
+        (confirmed)="confirmDelete()"
+        (cancelled)="cancelDelete()" />
+    }
+
+    @if (isResetConfirmationOpen()) {
+      <mbs-confirm-dialog
+        title="Reset demo data"
+        message="Restore the original demo collection? All books you added or edited in this browser will be lost."
+        actionBtnText="Reset data"
+        actionBtnVariant="primary"
+        (confirmed)="confirmReset()"
+        (cancelled)="cancelReset()"
+      />
+    }
+  </div>
+</section>

@@ -1,0 +1,120 @@
+:host {
+  display: block;
+  width: 100%;
+
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+thead {
+  background: #f8fafc;
+}
+
+th {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+  font-weight: 600;
+  white-space: nowrap;
+
+  button {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    &:hover {
+      color: #0e8e94;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #0e8e94;
+      outline-offset: 4px;
+    }
+  }
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #edf2f7;
+  color: #475569;
+  vertical-align: middle;
+}
+
+tbody {
+  tr {
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: #f0fafa;
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  td:first-child {
+    color: #172b49;
+    font-weight: 600;
+  }
+
+  .col-buttons {
+    width: 190px;
+
+    .btn + .btn {
+      margin-left: 5px;
+    }
+  }
+
+  .col-status,
+  .col-year {
+    width: 100px;
+  }
+}
+
+.book-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+
+  &.owned {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  &.wishlist {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  &.lent-out {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  table {
+    min-width: 480px;
+  }
+}
+
+@media (max-width: 600px) {
+  th,
+  td {
+    padding: 0.75rem;
+  }
+}

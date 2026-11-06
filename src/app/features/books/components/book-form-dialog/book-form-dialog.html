@@ -1,0 +1,137 @@
+<div class="dialog-backdrop">
+  <section class="dialog-panel" role="dialog" aria-modal="true" aria-labelledby="book-form-title">
+    <header>
+      <h2 id="add-book-title">{{ editingBook ? 'Edit book' : 'Add a book' }}</h2>
+      <button type="button" class="btn btn-secondary" (click)="closeDialog()">Close</button>
+    </header>
+
+    <div class="dialog-form">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-field">
+          <label for="book-title">Title *</label>
+          <input id="book-title" type="text" formControlName="title" placeholder="Book title" />
+
+          @if (form.controls.title.touched &&
+          form.controls.title.hasError('required')) {
+            <small class="field-error">Title is required</small>
+          }
+
+          @if (fieldErrors()['title']?.[0]; as error) {
+            <small class="field-error">{{ error }}</small>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="book-author">Author *</label>
+          <input id="book-author" type="text" formControlName="author" placeholder="Author" />
+
+          @if (form.controls.author.touched && form.controls.author.hasError('required')) {
+            <small class="field-error">Author is required</small>
+          }
+
+          @if (fieldErrors()['author']?.[0]; as error) {
+            <small class="field-error">{{ error }}</small>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="book-publication-year">Publication year</label>
+          <input id="book-publication-year" type="number" min="1" step="1" formControlName="publicationYear"
+                 placeholder="e.g. 1794" />
+
+          @if (fieldErrors()['publicationYear']?.[0]; as error) {
+            <small class="field-error">{{ error }}</small>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="book-isbn">ISBN</label>
+          <input id="book-isbn" type="text" formControlName="isbn" placeholder="ISBN-10 or ISBN-13" />
+
+          @if (fieldErrors()['isbn']?.[0]; as error) {
+            <small class="field-error">{{ error }}</small>
+          }
+          <small class="field-hint">Optional - older books may not have an ISBN</small>
+        </div>
+
+        <div class="form-field">
+          <label for="book-image-url">Cover image URL</label>
+          <input id="book-image-url" type="url" formControlName="imageUrl"
+                 placeholder="https://example.com/book-cover.jpg" />
+
+          @if (fieldErrors()['imageUrl']?.[0]; as error) {
+            <small class="field-error">{{ error }}</small>
+          }
+        </div>
+
+        <div class="form-field">
+          <label for="book-description">Description</label>
+          <textarea id="book-description" formControlName="description" rows="3"
+                    placeholder="Notes about this edition, printing, or book..."
+          ></textarea>
+        </div>
+
+        <div class="form-field">
+          <label for="book-language">Language *</label>
+          <select id="book-language" formControlName="language">
+            @for (language of languages; track language) {
+              <option [value]="language">{{ languageLabels[language] }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="book-language-details">Language details (optional)</label>
+          <input id="book-language-details" type="text" formControlName="languageDetails"
+                 placeholder="e.g. Old Latvian, Gothic script" />
+          <small class="field-hint"> Historical spelling, dialect, script, or another language.</small>
+        </div>
+
+        <div class="form-field">
+          <label for="book-condition">Condition *</label>
+          <select id="book-condition" formControlName="condition">
+            @for (condition of conditions; track condition) {
+              <option [value]="condition">{{ condition | displayLabel }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="book-status">Status *</label>
+          <select id="book-status" formControlName="status">
+            @for (status of statuses; track status) {
+              <option [value]="status">{{ status | displayLabel }}</option>
+            }
+          </select>
+        </div>
+
+        <fieldset class="form-field issues-field">
+          <legend>Issues (optional)</legend>
+
+          <div class="issues-grid">
+            @for (issue of issues; track issue) {
+              <label class="issue-option">
+                <input
+                  #issueCheckbox
+                  type="checkbox"
+                  [checked]="isIssueSelected(issue)"
+                  (change)="toggleIssue(issue, issueCheckbox.checked)"
+                />
+                <span>{{ issue | displayLabel }}</span>
+              </label>
+            }
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" (click)="closeDialog()">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary">
+            {{ editingBook ? 'Save changes' : 'Add book' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>

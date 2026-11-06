@@ -1,0 +1,55 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.duplicates-section {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .view-all {
+    font-size: 14px;
+    color: #238653;
+  }
+}
+
+.carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(160px, 25%, 220px);
+  gap: 16px;
+
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 12px;
+
+  > * {
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .duplicates-section {
+    padding: 16px;
+  }
+
+  .carousel {
+    grid-auto-columns: minmax(160px, 70%);
+  }
+}

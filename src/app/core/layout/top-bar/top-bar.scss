@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+.top-bar {
+  height: 64px;
+  display: grid;
+  grid-template-columns: 240px minmax(300px, 600px) 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+  border-bottom: 1px solid #e2e5e9;
+  background: #fff;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+}
+
+.search input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid #d6d9dd;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.user {
+  justify-self: end;
+}

@@ -1,0 +1,33 @@
+<section class="summary-grid" xmlns="http://www.w3.org/1999/html">
+  <article class="summary-card">
+    <span class="summary-card__label">Total Books</span>
+    <strong class="summary-card__value">{{ totalBooks() }}</strong>
+  </article>
+
+  <article class="summary-card">
+    <span class="summary-card__label">Wishlist</span>
+    <strong class="summary-card__value">{{ wishlistBooks() }}</strong>
+  </article>
+
+  <article class="summary-card">
+    <span class="summary-card__label">Duplicates</span>
+    <strong class="summary-card__value">{{ duplicateBooksCount() }}</strong>
+  </article>
+
+  <article class="summary-card">
+    <span class="summary-card__label">Incomplete Series</span>
+    <strong class="summary-card__value">{{ incompleteSeries() }}</strong>
+  </article>
+</section>
+
+<section class="summary-section">
+  <span class="summary-card__label">Recently Added</span>
+  <p>No recent books yet.</p>
+</section>
+
+<section class="summary-section">
+  <span class="summary-card__label">Oldest Books</span>
+  <p>No old books yet.</p>
+</section>
+
+<mbs-duplicates-carousel [groups]="duplicateGroups()"/>
